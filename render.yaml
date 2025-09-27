@@ -1,4 +1,5 @@
-# Blueprint pour configurer et déployer l'application CV sur Render
+# Fichier render.yaml
+
 services:
 - type: web
   name: mon-cv-web-faton
@@ -6,13 +7,13 @@ services:
   rootDir: ./ 
   env: python
   
-  # CORRECTION MAJEURE : Exécuter le script de base de données avant le lancement
+  # Exécuter le script de base de données avant le lancement
   buildCommand: |
     pip install -r requirements.txt
     python database.py
 
-  # Lancement de l'application (maintenant que la DB est garantie d'exister)
-  startCommand: gunicorn app:app
+  # CORRECTION CRUCIALE : Démarrer Gunicorn sur le port $PORT (8080)
+  startCommand: gunicorn --bind 0.0.0.0:$PORT app:app 
   
   envVars:
     - key: PORT
