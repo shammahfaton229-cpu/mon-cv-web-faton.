@@ -4,7 +4,7 @@ import os
 
 def create_database():
     # Importation locale des modèles et de l'objet 'app'
-    # Ceci coupe le cercle d'importation entre app.py et database.py
+    # Ceci est maintenant correct pour être appelé par 'python database.py' dans render.yaml
     from app import Experience, Competence, Education, Stage, app, db
     
     with app.app_context():
@@ -101,3 +101,7 @@ def create_database():
             print("Base de données créée et remplie !")
         else:
             print("La base de données contenait déjà des données.")
+
+if __name__ == '__main__':
+    from app import app, db # Importation des objets nécessaires pour l'exécution locale
+    create_database()
