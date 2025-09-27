@@ -1,7 +1,7 @@
 # Fichier render.yaml
 
 services:
-- type: web
+- type: web # <-- DOIT AVOIR LE TIRETS ET L'INDENTATION EXACTE
   name: mon-cv-web-faton
   plan: free
   rootDir: ./ 
