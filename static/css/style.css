@@ -1,0 +1,231 @@
+/* Importation de polices Google Fonts pour un look professionnel */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #09223db4; /* Bleu profond et professionnel */
+    --secondary-color: #f0f2f573; /* Gris clair pour les fonds de section */
+    --text-color: #333; /* Texte sombre */
+    --heading-color: #3804049c; /* En-têtes très foncés */
+    --accent-color: #e67e22; /* Une touche d'orange pour l'accentuation */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    /* Mise à jour du chemin d'accès pour l'image de fond (si elle est utilisée) */
+    background-image: url('../img/fond.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    min-height: 100vh;
+    padding: 30px 0;
+    box-sizing: border-box;
+}
+
+/* Conteneur principal du CV pour une apparence "carte" */
+.cv-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    max-width: 900px;
+    width: 100%;
+    margin: 20px;
+}
+
+/* Styles des titres */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--heading-color);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 2em;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 8px;
+    margin-top: 40px;
+}
+
+h3 {
+    font-size: 1.4em;
+    color: var(--accent-color);
+    margin-top: 25px;
+}
+
+/* Styles pour les sections individuelles (Blocs) */
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-left: 5px solid var(--accent-color); 
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+/* Styles des listes de compétences */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+
+/* Image de profil */
+.profile-img {
+    display: block;
+    margin: 20px auto 30px auto;
+    border-radius: 8px; 
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 5px 15px var(--shadow-light);
+    width: 180px; 
+    height: 180px; 
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+/* Formulaire de contact */
+.contact-form {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    margin-top: 40px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+}
+
+.contact-form button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #004085;
+}
+
+/* Styles pour la modale (lightbox) */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    animation-name: zoom; 
+    animation-duration: 0.6s;
+}
+
+/* Animation d'ouverture */
+@keyframes zoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Le bouton de fermeture (X) */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Style pour le bouton du lien Jotform */
+.jotform-button {
+    display: inline-block; /* Permet d'appliquer padding/margin */
+    background-color: var(--primary-color);
+    color: white !important; /* Force la couleur du texte à blanc */
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none; /* Retire le soulignement */
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    margin-top: 15px; /* Petit espace au-dessus */
+}
+
+.jotform-button:hover {
+    background-color: #004085;
+}

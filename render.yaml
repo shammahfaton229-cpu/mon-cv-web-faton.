@@ -1,0 +1,20 @@
+# Blueprint pour configurer et déployer l'application CV sur Render
+services:
+  # Définition du service Web pour l'application Flask
+- type: web
+  name: mon-cv-web-faton
+  # Utilise le 'starter' (niveau gratuit)
+  plan: free
+  # Chemin vers la racine de votre code (le dépôt GitHub)
+  rootDir: ./ 
+  # Le langage/environnement utilisé
+  env: python
+  # Commande pour installer les dépendances (doit correspondre à requirements.txt)
+  buildCommand: pip install -r requirements.txt
+  # Commande pour lancer l'application en production avec Gunicorn.
+  # Format: gunicorn [fichier_app]:[objet_app]
+  startCommand: gunicorn app:app
+  # L'application sera accessible sur le port 8080 (port par défaut pour les services web Render)
+  envVars:
+    - key: PORT
+      value: "8080"
