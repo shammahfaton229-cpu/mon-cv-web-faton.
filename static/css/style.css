@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
 
 :root {
-    --primary-color: #09223D; /* Bleu profond - Utilisation opaque pour la lisibilité */
-    --secondary-color: rgba(255, 255, 255, 0.9); /* Blanc quasi-opaque pour le texte */
+    --primary-color: #09223D; /* Bleu profond */
+    --secondary-color: rgba(255, 255, 255, 0.9); /* Blanc quasi-opaque */
     --text-color: #333; /* Texte sombre */
     --heading-color: #09223D; /* En-têtes en bleu principal */
     --accent-color: #e67e22; /* Une touche d'orange pour l'accentuation */
@@ -16,10 +16,12 @@ body {
     line-height: 1.8;
     margin: 0;
     
-    /* GLASSMORPHISM FOND: Dégradé professionnel */
-    background: linear-gradient(135deg, #1f005c, #5b0060, #001f5c, #004c4c); 
-    background-size: cover;
+    /* MODIFICATION CLÉ 1 : Nouveau fond dégradé (Violet, Bleu, Blanc, Rouge) */
+    background: linear-gradient(135deg, #4A00B7, #00A6FF, #FFFFFF, #FF4500); 
+    background-size: 400% 400%; /* Permet le mouvement du dégradé */
     background-attachment: fixed;
+    /* Optionnel : Animation de fond pour un effet 'vibrant' */
+    animation: backgroundShift 15s ease infinite; 
     
     color: var(--text-color);
     display: flex;
@@ -30,58 +32,63 @@ body {
     box-sizing: border-box;
 }
 
+/* Animation pour faire bouger le dégradé de fond */
+@keyframes backgroundShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* Conteneur principal du CV pour l'effet de verre dépoli */
 .cv-container {
     /* GLASSMORPHISM appliqué */
-    background-color: rgba(255, 255, 255, 0.15); 
-    backdrop-filter: blur(15px); /* Flou augmenté pour plus d'impact */
-    -webkit-backdrop-filter: blur(15px); 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    box-shadow: 0 15px 40px 0 var(--shadow-dark); /* Ombre forte pour la profondeur */
+    background-color: rgba(255, 255, 255, 0.1); /* Plus de transparence */
+    backdrop-filter: blur(20px); /* Flou augmenté pour l'effet "glace" */
+    -webkit-backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Bordure plus visible */
+    box-shadow: 0 15px 40px 0 var(--shadow-dark); 
     
     padding: 40px;
-    border-radius: 20px; /* Bords plus arrondis */
-    max-width: 1000px; /* Largeur augmentée pour la grille */
+    border-radius: 20px;
+    max-width: 1000px; 
     width: 95%;
     margin: 20px;
 }
 
-/* --- STRUCTURE DE GRILLE 2 COLONNES (Clé du rendu professionnel) --- */
+/* --- STRUCTURE DE GRILLE 2 COLONNES --- */
 .grid-layout {
     display: grid;
-    grid-template-columns: 350px 1fr; /* Colonne latérale plus large pour le contenu clé */
+    grid-template-columns: 350px 1fr;
     gap: 40px;
     margin-top: 40px;
 }
 
 .sidebar {
-    /* Styles pour la barre latérale (Photo, Contact, Compétences) */
     padding-right: 20px;
-    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Séparateur subtil */
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Ajustement pour les petits écrans */
 @media (max-width: 900px) {
     .grid-layout {
-        grid-template-columns: 1fr; /* Revenir à une seule colonne */
+        grid-template-columns: 1fr;
     }
     .sidebar {
         border-right: none;
         padding-right: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         padding-bottom: 20px;
     }
 }
-/* ----------------------------------------------------------------- */
+/* -------------------------------------- */
 
 
-/* Styles des titres (Amélioration de la lisibilité sur le fond clair) */
+/* Styles des titres */
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: #fff; /* Titres en blanc pour un contraste maximal sur le Glassmorphism */
+    color: #fff; 
     margin-top: 30px;
     margin-bottom: 15px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Légère ombre pour plus de pop */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
 }
 
 h1 {
@@ -98,7 +105,7 @@ h1 {
 h2 {
     font-size: 2.2em;
     color: var(--accent-color);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
     padding-bottom: 8px;
     margin-top: 40px;
 }
@@ -109,48 +116,64 @@ h3 {
     margin-top: 25px;
 }
 
-/* Styles pour les sections individuelles (Blocs) - Forte lisibilité */
+/* --- DÉFINITION DE L'ANIMATION LÉGENDAIRE --- */
+@keyframes slideAndZoom {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98); /* Monte et est légèrement réduit */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1); /* Arrive à sa position finale */
+    }
+}
+
+/* Styles pour les sections individuelles (Blocs) */
 .section {
     margin-bottom: 30px;
     padding: 25px;
     
-    /* Base de la section en blanc presque opaque pour un meilleur contraste */
-    background-color: var(--secondary-color); 
+    /* Base de la section : Glassmorphism sur un fond presque opaque */
+    background-color: rgba(255, 255, 255, 0.9); /* Texte lisible */
     border-left: 5px solid var(--accent-color); 
     border-radius: 10px;
     box-shadow: 0 4px 12px var(--shadow-light);
     
-    /* ANIMATION SUBTILE */
+    /* ANIMATION DE BASE POUR L'APPARITION */
+    animation: slideAndZoom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Courbe plus dynamique */
+    opacity: 0; /* Important pour cacher avant le début de l'animation */
+
+    /* Animations de survol pour un rendu pro */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .section:hover {
-    transform: translateY(-5px); /* Remonte pour l'effet "poli" */
-    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.5); /* Ombre plus prononcée au survol */
+    transform: translateY(-5px); 
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.5); 
 }
 
-/* Styles des listes de compétences */
+/* Styles des listes de compétences (Aussi en glassmorphism léger pour la cohérence) */
 ul {
     list-style: none;
     padding: 0;
 }
 
 ul li {
-    background-color: white; /* Rendu blanc pour une lisibilité parfaite */
+    background-color: rgba(255, 255, 255, 0.8); /* Transparence pour voir le fond du container */
+    backdrop-filter: blur(5px);
     margin-bottom: 10px;
     padding: 15px 18px;
     border-left: 5px solid var(--primary-color);
     border-radius: 8px;
     box-shadow: 0 2px 5px var(--shadow-light);
     
-    /* ANIMATION SUBTILE */
     transition: transform 0.2s ease, border-left 0.2s ease;
     cursor: default;
 }
 
 ul li:hover {
-    transform: scale(1.03); /* Grossit légèrement */
-    border-left: 8px solid var(--accent-color); /* Met l'accent en avant */
+    transform: scale(1.03); 
+    border-left: 8px solid var(--accent-color); 
 }
 
 /* Image de profil */
@@ -160,7 +183,7 @@ ul li:hover {
     border-radius: 50%; 
     border: 7px solid var(--accent-color);
     box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2), 0 5px 15px var(--shadow-dark);
-    width: 200px; /* Légèrement plus grande */
+    width: 200px; 
     height: 200px; 
     object-fit: cover;
     cursor: pointer;
@@ -172,9 +195,9 @@ ul li:hover {
     border: 7px solid var(--primary-color);
 }
 
-/* Formulaire de contact (Maintenu lisible et propre) */
+/* Formulaire de contact */
 .contact-form {
-    background-color: var(--secondary-color); /* Blanc quasi-opaque */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 35px;
     border-radius: 15px;
     box-shadow: 0 8px 20px var(--shadow-dark);
@@ -200,7 +223,7 @@ ul li:hover {
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
     background-color: white; 
-    box-shadow: inset 0 1px 3px var(--shadow-light); /* Ombre interne */
+    box-shadow: inset 0 1px 3px var(--shadow-light); 
 }
 
 .contact-form button {
@@ -223,7 +246,7 @@ ul li:hover {
 /* Style pour le bouton du lien Jotform */
 .jotform-button {
     display: inline-block;
-    background-color: var(--accent-color); /* Couleur accentuée pour le CTA */
+    background-color: var(--accent-color);
     color: white !important;
     padding: 15px 30px;
     border: none;
@@ -243,7 +266,6 @@ ul li:hover {
 
 /* Styles pour la modale (pas de changement majeur) */
 .modal {
-    /* ... (code inchangé pour la modale) ... */
     display: none; 
     position: fixed;
     z-index: 1000;
