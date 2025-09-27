@@ -3,12 +3,21 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from sqlalchemy import asc, desc # Importe les fonctions de tri
 
+# NOUVEAU: Importation de la fonction de création de DB
+from database import create_database 
+
 # Configuration de l'application Flask
 app = Flask(__name__)
 # Connexion à la base de données
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cv_data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+# CORRECTION MAJEURE POUR RENDER : Crée la DB dans le contexte de l'application
+# Ceci garantit que la base de données SQLite est créée et remplie 
+# la première fois que Render lance Gunicorn.
+with app.app_context():
+    create_database()
 
 # ----------------------------------------------------
 # DÉFINITION DES MODÈLES (CLASSES)
