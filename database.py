@@ -1,10 +1,11 @@
 import sqlite3
 import os
-from app import db 
+# L'objet 'db' et les modèles sont maintenant importés LOCALEMENT dans la fonction.
 
 def create_database():
     # Importation locale des modèles et de l'objet 'app'
-    from app import Experience, Competence, Education, Stage, app 
+    # Ceci coupe le cercle d'importation entre app.py et database.py
+    from app import Experience, Competence, Education, Stage, app, db
     
     with app.app_context():
         # Crée toutes les tables définies
@@ -100,7 +101,3 @@ def create_database():
             print("Base de données créée et remplie !")
         else:
             print("La base de données contenait déjà des données.")
-
-if __name__ == '__main__':
-    from app import app
-    create_database()
