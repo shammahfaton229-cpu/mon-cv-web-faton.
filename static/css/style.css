@@ -14,11 +14,12 @@ body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.8;
     margin: 0;
-    /* Mise à jour du chemin d'accès pour l'image de fond (si elle est utilisée) */
-    background-image: url('../img/fond.jpg'); 
+    
+    /* MODIFICATION POUR LE GLASSPMORHISM: Fond texturé/dégradé */
+    background: linear-gradient(135deg, #09223D, #3A69A3, #09223D); 
     background-size: cover;
-    background-position: center;
-    background-color: var(--secondary-color);
+    background-attachment: fixed; /* Fixe le fond pour que le flou soit plus visible en scrollant */
+    
     color: var(--text-color);
     display: flex;
     justify-content: center;
@@ -30,10 +31,16 @@ body {
 
 /* Conteneur principal du CV pour une apparence "carte" */
 .cv-container {
-    background-color: white;
+    /* PROPRIÉTÉS GLASSMORPHISM */
+    background-color: rgba(255, 255, 255, 0.15); /* Transparence légère */
+    backdrop-filter: blur(10px); /* L'effet de verre dépoli */
+    -webkit-backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure subtile */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Ombre pour la profondeur */
+    /* FIN GLASSMORPHISM */
+    
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px var(--shadow-light);
     max-width: 900px;
     width: 100%;
     margin: 20px;
@@ -42,7 +49,7 @@ body {
 /* Styles des titres */
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: var(--heading-color);
+    color: #fff; /* Titres en blanc pour contraster avec le Glassmorphism */
     margin-top: 30px;
     margin-bottom: 15px;
 }
@@ -50,18 +57,18 @@ h1, h2, h3 {
 h1 {
     font-size: 2.5em;
     text-align: center;
-    color: var(--primary-color);
+    color: #fff;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--accent-color); /* Utilise l'accent pour la séparation */
     padding-bottom: 15px;
     margin-bottom: 40px;
 }
 
 h2 {
     font-size: 2em;
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--primary-color);
+    color: var(--accent-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Séparation blanche et transparente */
     padding-bottom: 8px;
     margin-top: 40px;
 }
@@ -76,10 +83,16 @@ h3 {
 .section {
     margin-bottom: 30px;
     padding: 20px;
-    background-color: var(--secondary-color);
+    
+    /* GLASSMORPHISM LÉGER SUR LES SECTIONS */
+    background-color: rgba(255, 255, 255, 0.05); /* Plus transparent que le conteneur principal */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
     border-left: 5px solid var(--accent-color); 
     border-radius: 8px;
-    box-shadow: 0 2px 8px var(--shadow-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Styles des listes de compétences */
@@ -89,7 +102,7 @@ ul {
 }
 
 ul li {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9); /* Rendre le texte plus lisible ici */
     margin-bottom: 10px;
     padding: 12px 15px;
     border-left: 4px solid var(--primary-color);
@@ -101,9 +114,9 @@ ul li {
 .profile-img {
     display: block;
     margin: 20px auto 30px auto;
-    border-radius: 8px; 
-    border: 5px solid var(--primary-color);
-    box-shadow: 0 5px 15px var(--shadow-light);
+    border-radius: 50%; /* Image ronde pour un look moderne */
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2), 0 5px 15px rgba(0, 0, 0, 0.5);
     width: 180px; 
     height: 180px; 
     object-fit: cover;
@@ -115,12 +128,13 @@ ul li {
     transform: scale(1.05);
 }
 
-/* Formulaire de contact */
+/* Formulaire de contact (Ajusté pour la transparence) */
 .contact-form {
-    background-color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-light);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     margin-top: 40px;
 }
 
@@ -128,7 +142,7 @@ ul li {
     display: block;
     margin-bottom: 8px;
     font-weight: 700;
-    color: var(--primary-color);
+    color: #fff; /* Labels en blanc */
 }
 
 .contact-form input[type="text"],
@@ -142,6 +156,7 @@ ul li {
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.8); /* Fond du champ semi-transparent */
 }
 
 .contact-form button {
@@ -157,10 +172,10 @@ ul li {
 }
 
 .contact-form button:hover {
-    background-color: #004085;
+    background-color: var(--accent-color); /* Changement de couleur au survol */
 }
 
-/* Styles pour la modale (lightbox) */
+/* Styles pour la modale (lightbox) - Pas de changement majeur */
 .modal {
     display: none; 
     position: fixed;
@@ -227,5 +242,5 @@ ul li {
 }
 
 .jotform-button:hover {
-    background-color: #004085;
+    background-color: var(--accent-color); /* S'harmonise avec le nouveau look */
 }
