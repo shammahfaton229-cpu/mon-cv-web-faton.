@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Curriculum Vitae - FATON Kpèhundo</title>
+    <title>Curriculum Vitae - FATON Kpèhundo Don de Dieu Shammah</title>
     <meta charset="UTF-8">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,86 +14,97 @@
     <div class="cv-container">
         <h1>CURRICULUM VITAE</h1>
 
-        <img src="{{ url_for('static', filename='img/moi.jpg') }}" alt="Ma photo" class="profile-img" id="myImg">
+        <div class="grid-layout">
+            
+            <div class="sidebar">
 
-        <div class="section">
-            <h2>ÉTAT CIVIL</h2>
-            <p><strong>Nom :</strong> FATON</p>
-            <p><strong>Prénoms :</strong> Kpèhundo Don de Dieu shammah</p>
-            <p><strong>Date de naissance :</strong> 22 Décembre 2003</p>
-            <p><strong>Situation matrimoniale :</strong> Célibataire sans enfant</p>
-            <p><strong>Nationalité :</strong> Béninoise</p>
-            <p><strong>Téléphone :</strong> (+229)0191331776</p>
-            <p><strong>Email :</strong> Shammahfaton.@gmail.com</p>
-            <p><strong>Adresse :</strong> Azowlisse</p>
-        </div>
-        
-        <div class="section">
-            <h2>ÉTUDES PRIMAIRES ET SECONDAIRES</h2>
-            {% for edu in educations %}
-            <div>
-                <h3>{{ edu.etablissement }} ({{ edu.niveau }})</h3>
-                <p><strong>Période :</strong> {{ edu.periode }}</p>
-                {% if edu.diplome %}
-                    <p><strong>Diplôme :</strong> {{ edu.diplome }}</p>
-                {% endif %}
+                <img src="{{ url_for('static', filename='img/moi.jpg') }}" alt="Ma photo" class="profile-img" id="myImg">
+
+                <div class="section contact-info">
+                    <h2>Détails de Contact</h2>
+                    <p><strong>Nom :</strong> FATON</p>
+                    <p><strong>Prénoms :</strong> Kpèhundo Don de Dieu shammah</p>
+                    <p><strong>Date de naissance :</strong> 22 Décembre 2003</p>
+                    <p><strong>Situation matrimoniale :</strong> Célibataire</p>
+                    <p><strong>Nationalité :</strong> Béninoise</p>
+                    <p><strong>Téléphone :</strong> (+229)0191331776</p>
+                    <p><strong>Email :</strong> Shammahfaton.@gmail.com</p>
+                    <p><strong>Adresse :</strong> Azowlisse</p>
+                </div>
+                
+                <div class="section">
+                    <h2>Compétences Techniques</h2>
+                    <ul>
+                    {% for comp in competences %}
+                        <li><strong>{{ comp.nom }}</strong>: {{ comp.niveau }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h2>Compétences Linguistiques</h2>
+                    <p><strong>Langue parlée et écrite :</strong> Français</p>
+                    <p><strong>Langues parlées :</strong> Wémè, Fon</p>
+                </div>
+
+                <div class="section">
+                    <p class="final-statement">Je certifie exactes les informations ci-dessus mentionnées.</p>
+                </div>
+                
             </div>
-            {% endfor %}
-        </div>
+            
+            <div class="main-details">
+                
+                <div class="section">
+                    <h2>ÉTUDES UNIVERSITAIRES</h2>
+                    {% for exp in experiences %}
+                    <div>
+                        <h3>{{ exp.poste }} - {{ exp.entreprise }}</h3>
+                        <p>Période : <strong>{{ exp.periode }}</strong></p>
+                        <p>{{ exp.description }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
 
-        <div class="section">
-            <h2>ÉTUDES UNIVERSITAIRES</h2>
-            {% for exp in experiences %}
-            <div>
-                <h3>{{ exp.poste }} - {{ exp.entreprise }}</h3>
-                <p>Période : <strong>{{ exp.periode }}</strong></p>
-                <p>{{ exp.description }}</p>
+                <div class="section">
+                    <h2>STAGES ET FORMATIONS PROFESSIONNELLES</h2>
+                    {% for stage in stages %}
+                    <div>
+                        <h3>{{ stage.cadre }} - {{ stage.centre }}</h3>
+                        <p><strong>Année :</strong> {{ stage.annee }}</p>
+                        {% if stage.diplome %}
+                            <p><strong>Diplôme/Certificat :</strong> {{ stage.diplome }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="section">
+                    <h2>ÉTUDES PRIMAIRES ET SECONDAIRES</h2>
+                    {% for edu in educations %}
+                    <div>
+                        <h3>{{ edu.etablissement }} ({{ edu.niveau }})</h3>
+                        <p><strong>Période :</strong> {{ edu.periode }}</p>
+                        {% if edu.diplome %}
+                            <p><strong>Diplôme :</strong> {{ edu.diplome }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="section contact-form">
+                    <h2>CONTACTEZ-MOI</h2>
+                    <p>Pour me contacter directement, veuillez utiliser le formulaire sécurisé ci-dessous. Je vous répondrai dans les plus brefs délais.</p>
+                    <a href="https://form.jotform.com/252686254072056" target="_blank" class="jotform-button">
+                        Ouvrir le formulaire de contact
+                    </a>
+                </div>
+
             </div>
-            {% endfor %}
+            
         </div>
-
-        <div class="section">
-            <h2>STAGES ET FORMATIONS PROFESSIONNELLES</h2>
-            {% for stage in stages %}
-            <div>
-                <h3>{{ stage.cadre }} - {{ stage.centre }}</h3>
-                <p><strong>Année :</strong> {{ stage.annee }}</p>
-                {% if stage.diplome %}
-                    <p><strong>Diplôme/Certificat :</strong> {{ stage.diplome }}</p>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="section">
-            <h2>COMPÉTENCES TECHNIQUES</h2>
-            <ul>
-            {% for comp in competences %}
-                <li><strong>{{ comp.nom }}</strong>: {{ comp.niveau }}</li>
-            {% endfor %}
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>COMPÉTENCES LINGUISTIQUES</h2>
-            <p><strong>Langue parlée et écrite :</strong> Français</p>
-            <p><strong>Langues parlées :</strong> Wémè, Fon</p>
-            <br>
-            <p class="final-statement">Je certifie exactes les informations ci-dessus mentionnées.</p>
-        </div>
-
-<div class="section contact-form">
-    <h2>CONTACTEZ-MOI</h2>
+        </div> 
     
-    <p>Pour me contacter directement, veuillez utiliser le formulaire sécurisé ci-dessous. Je vous répondrai dans les plus brefs délais.</p>
-
-    <a href="https://form.jotform.com/252686254072056" target="_blank" class="jotform-button">
-        Ouvrir le formulaire de contact
-    </a>
-    
-</div>
-        
-
     <div id="myModal" class="modal">
       <span class="close">&times;</span>
       <img class="modal-content" id="img01">

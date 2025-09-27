@@ -2,12 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
 
 :root {
-    --primary-color: #09223db4; /* Bleu profond et professionnel */
-    --secondary-color: #f0f2f573; /* Gris clair pour les fonds de section */
+    --primary-color: #09223D; /* Bleu profond - Utilisation opaque pour la lisibilité */
+    --secondary-color: rgba(255, 255, 255, 0.9); /* Blanc quasi-opaque pour le texte */
     --text-color: #333; /* Texte sombre */
-    --heading-color: #3804049c; /* En-têtes très foncés */
+    --heading-color: #09223D; /* En-têtes en bleu principal */
     --accent-color: #e67e22; /* Une touche d'orange pour l'accentuation */
-    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.4);
+    --shadow-light: rgba(0, 0, 0, 0.15);
 }
 
 body {
@@ -15,10 +16,10 @@ body {
     line-height: 1.8;
     margin: 0;
     
-    /* MODIFICATION POUR LE GLASSPMORHISM: Fond texturé/dégradé */
-    background: linear-gradient(135deg, #09223D, #3A69A3, #09223D); 
+    /* GLASSMORPHISM FOND: Dégradé professionnel */
+    background: linear-gradient(135deg, #1f005c, #5b0060, #001f5c, #004c4c); 
     background-size: cover;
-    background-attachment: fixed; /* Fixe le fond pour que le flou soit plus visible en scrollant */
+    background-attachment: fixed;
     
     color: var(--text-color);
     display: flex;
@@ -29,70 +30,103 @@ body {
     box-sizing: border-box;
 }
 
-/* Conteneur principal du CV pour une apparence "carte" */
+/* Conteneur principal du CV pour l'effet de verre dépoli */
 .cv-container {
-    /* PROPRIÉTÉS GLASSMORPHISM */
-    background-color: rgba(255, 255, 255, 0.15); /* Transparence légère */
-    backdrop-filter: blur(10px); /* L'effet de verre dépoli */
-    -webkit-backdrop-filter: blur(10px); 
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure subtile */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Ombre pour la profondeur */
-    /* FIN GLASSMORPHISM */
+    /* GLASSMORPHISM appliqué */
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(15px); /* Flou augmenté pour plus d'impact */
+    -webkit-backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    box-shadow: 0 15px 40px 0 var(--shadow-dark); /* Ombre forte pour la profondeur */
     
     padding: 40px;
-    border-radius: 12px;
-    max-width: 900px;
-    width: 100%;
+    border-radius: 20px; /* Bords plus arrondis */
+    max-width: 1000px; /* Largeur augmentée pour la grille */
+    width: 95%;
     margin: 20px;
 }
 
-/* Styles des titres */
+/* --- STRUCTURE DE GRILLE 2 COLONNES (Clé du rendu professionnel) --- */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr; /* Colonne latérale plus large pour le contenu clé */
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.sidebar {
+    /* Styles pour la barre latérale (Photo, Contact, Compétences) */
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Séparateur subtil */
+}
+
+/* Ajustement pour les petits écrans */
+@media (max-width: 900px) {
+    .grid-layout {
+        grid-template-columns: 1fr; /* Revenir à une seule colonne */
+    }
+    .sidebar {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 20px;
+    }
+}
+/* ----------------------------------------------------------------- */
+
+
+/* Styles des titres (Amélioration de la lisibilité sur le fond clair) */
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: #fff; /* Titres en blanc pour contraster avec le Glassmorphism */
+    color: #fff; /* Titres en blanc pour un contraste maximal sur le Glassmorphism */
     margin-top: 30px;
     margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Légère ombre pour plus de pop */
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 3em;
     text-align: center;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 3px solid var(--accent-color); /* Utilise l'accent pour la séparation */
+    letter-spacing: 3px;
+    border-bottom: 5px double var(--accent-color);
     padding-bottom: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 2.2em;
     color: var(--accent-color);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Séparation blanche et transparente */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); 
     padding-bottom: 8px;
     margin-top: 40px;
 }
 
 h3 {
-    font-size: 1.4em;
-    color: var(--accent-color);
+    font-size: 1.6em;
+    color: var(--primary-color);
     margin-top: 25px;
 }
 
-/* Styles pour les sections individuelles (Blocs) */
+/* Styles pour les sections individuelles (Blocs) - Forte lisibilité */
 .section {
     margin-bottom: 30px;
-    padding: 20px;
+    padding: 25px;
     
-    /* GLASSMORPHISM LÉGER SUR LES SECTIONS */
-    background-color: rgba(255, 255, 255, 0.05); /* Plus transparent que le conteneur principal */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    
+    /* Base de la section en blanc presque opaque pour un meilleur contraste */
+    background-color: var(--secondary-color); 
     border-left: 5px solid var(--accent-color); 
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    
+    /* ANIMATION SUBTILE */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px); /* Remonte pour l'effet "poli" */
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.5); /* Ombre plus prononcée au survol */
 }
 
 /* Styles des listes de compétences */
@@ -102,39 +136,48 @@ ul {
 }
 
 ul li {
-    background-color: rgba(255, 255, 255, 0.9); /* Rendre le texte plus lisible ici */
+    background-color: white; /* Rendu blanc pour une lisibilité parfaite */
     margin-bottom: 10px;
-    padding: 12px 15px;
-    border-left: 4px solid var(--primary-color);
-    border-radius: 6px;
-    box-shadow: 0 1px 3px var(--shadow-light);
+    padding: 15px 18px;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--shadow-light);
+    
+    /* ANIMATION SUBTILE */
+    transition: transform 0.2s ease, border-left 0.2s ease;
+    cursor: default;
+}
+
+ul li:hover {
+    transform: scale(1.03); /* Grossit légèrement */
+    border-left: 8px solid var(--accent-color); /* Met l'accent en avant */
 }
 
 /* Image de profil */
 .profile-img {
     display: block;
     margin: 20px auto 30px auto;
-    border-radius: 50%; /* Image ronde pour un look moderne */
-    border: 5px solid var(--accent-color);
-    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2), 0 5px 15px rgba(0, 0, 0, 0.5);
-    width: 180px; 
-    height: 180px; 
+    border-radius: 50%; 
+    border: 7px solid var(--accent-color);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2), 0 5px 15px var(--shadow-dark);
+    width: 200px; /* Légèrement plus grande */
+    height: 200px; 
     object-fit: cover;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, border 0.2s;
 }
 
 .profile-img:hover {
     transform: scale(1.05);
+    border: 7px solid var(--primary-color);
 }
 
-/* Formulaire de contact (Ajusté pour la transparence) */
+/* Formulaire de contact (Maintenu lisible et propre) */
 .contact-form {
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(3px);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: var(--secondary-color); /* Blanc quasi-opaque */
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px var(--shadow-dark);
     margin-top: 40px;
 }
 
@@ -142,7 +185,7 @@ ul li {
     display: block;
     margin-bottom: 8px;
     font-weight: 700;
-    color: #fff; /* Labels en blanc */
+    color: var(--primary-color);
 }
 
 .contact-form input[type="text"],
@@ -150,33 +193,57 @@ ul li {
 .contact-form input[type="tel"],
 .contact-form textarea {
     width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 12px;
+    margin-bottom: 25px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
-    background-color: rgba(255, 255, 255, 0.8); /* Fond du champ semi-transparent */
+    background-color: white; 
+    box-shadow: inset 0 1px 3px var(--shadow-light); /* Ombre interne */
 }
 
 .contact-form button {
     background-color: var(--primary-color);
     color: white;
-    padding: 12px 25px;
+    padding: 15px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: 700;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .contact-form button:hover {
-    background-color: var(--accent-color); /* Changement de couleur au survol */
+    background-color: var(--accent-color); 
+    transform: translateY(-2px);
 }
 
-/* Styles pour la modale (lightbox) - Pas de changement majeur */
+/* Style pour le bouton du lien Jotform */
+.jotform-button {
+    display: inline-block;
+    background-color: var(--accent-color); /* Couleur accentuée pour le CTA */
+    color: white !important;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-top: 15px;
+}
+
+.jotform-button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Styles pour la modale (pas de changement majeur) */
 .modal {
+    /* ... (code inchangé pour la modale) ... */
     display: none; 
     position: fixed;
     z-index: 1000;
@@ -201,13 +268,11 @@ ul li {
     animation-duration: 0.6s;
 }
 
-/* Animation d'ouverture */
 @keyframes zoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
 }
 
-/* Le bouton de fermeture (X) */
 .close {
     position: absolute;
     top: 15px;
@@ -224,23 +289,4 @@ ul li {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
-}
-/* Style pour le bouton du lien Jotform */
-.jotform-button {
-    display: inline-block; /* Permet d'appliquer padding/margin */
-    background-color: var(--primary-color);
-    color: white !important; /* Force la couleur du texte à blanc */
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none; /* Retire le soulignement */
-    font-size: 1.1em;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
-    margin-top: 15px; /* Petit espace au-dessus */
-}
-
-.jotform-button:hover {
-    background-color: var(--accent-color); /* S'harmonise avec le nouveau look */
 }
