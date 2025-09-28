@@ -51,7 +51,7 @@ def create_database():
             edu4 = Education(periode='2014', etablissement='CEG Azowlissè', niveau='6ème', diplome='')
             edu5 = Education(periode='2015-2016', etablissement='Complexe scolaire Jesus La Source', niveau='5ème-3ème', diplome='BEPC')
             edu6 = Education(periode='2017', etablissement='CEG Azowlissè', niveau='2nd', diplome='')
-            edu7 = Education(periode='2018-2019', etablissement='Complexe scolaire la Grande Académie', niveau='1ère- Terminale', diplome='BAC')
+            edu7 = Education(periode='2018-2019', etablissement='Complexe scolaire la Grande Académie', niveau='1ère- Terminale', diplome='BAC D')
 
             # ----------------------------------------------------
             # III. STAGES & FORMATIONS PROFESSIONNELLES (Reste inchangé)
