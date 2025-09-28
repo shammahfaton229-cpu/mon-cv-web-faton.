@@ -1,12 +1,12 @@
-/* Importation de polices Google Fonts pour un look professionnel */
+/* Importation de polices Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
 
 :root {
     --primary-color: #09223D; /* Bleu profond */
     --secondary-color: rgba(255, 255, 255, 0.9); /* Blanc quasi-opaque */
-    --text-color: #333; /* Texte sombre */
-    --heading-color: #09223D; /* En-têtes en bleu principal */
-    --accent-color: #e67e22; /* Une touche d'orange pour l'accentuation */
+    --text-color-dark: #1a1a1a; /* Texte très sombre pour la lisibilité */
+    --text-color-light: #f0f0f0; /* Texte clair pour les titres sur fond sombre */
+    --accent-color: #e67e22; /* Orange pour l'accentuation */
     --shadow-dark: rgba(0, 0, 0, 0.4);
     --shadow-light: rgba(0, 0, 0, 0.15);
 }
@@ -16,13 +16,13 @@ body {
     line-height: 1.8;
     margin: 0;
     
-    /* MODIFICATION CLÉ 1 : Nouveau fond dégradé (Violet, Bleu, Blanc, Rouge) */
+    /* Fond dégradé animé (Violet, Bleu, Blanc, Rouge) */
     background: linear-gradient(135deg, #4A00B7, #00A6FF, #FFFFFF, #FF4500); 
     background-size: 400% 400%; 
     background-attachment: fixed;
     animation: backgroundShift 15s ease infinite; 
     
-    color: var(--text-color);
+    color: var(--text-color-dark);
     display: flex;
     justify-content: center;
     align-items: flex-start; 
@@ -31,16 +31,15 @@ body {
     box-sizing: border-box;
 }
 
-/* Animation pour faire bouger le dégradé de fond */
+/* Animation pour le fond dégradé */
 @keyframes backgroundShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Conteneur principal du CV pour l'effet de verre dépoli */
+/* Conteneur principal (Glassmorphism) */
 .cv-container {
-    /* GLASSMORPHISM appliqué */
     background-color: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(20px); 
     -webkit-backdrop-filter: blur(20px); 
@@ -84,7 +83,6 @@ body {
 /* Styles des titres */
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: #fff; 
     margin-top: 30px;
     margin-bottom: 15px;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
@@ -93,7 +91,7 @@ h1, h2, h3 {
 h1 {
     font-size: 3em;
     text-align: center;
-    color: #fff;
+    color: var(--text-color-light); /* Titre principal clair */
     text-transform: uppercase;
     letter-spacing: 3px;
     border-bottom: 5px double var(--accent-color);
@@ -103,7 +101,7 @@ h1 {
 
 h2 {
     font-size: 2.2em;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Couleur d'accentuation */
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
     padding-bottom: 8px;
     margin-top: 40px;
@@ -129,10 +127,9 @@ h3 {
 
 /* Styles pour les sections individuelles (Blocs) */
 .section {
-    margin-bottom: 30px;
-    padding: 25px;
+    margin-bottom: 35px; /* Marge augmentée pour plus d'air */
+    padding: 30px; /* Padding augmenté */
     
-    /* Base de la section : Glassmorphism sur un fond presque opaque */
     background-color: rgba(255, 255, 255, 0.9); 
     border-left: 5px solid var(--accent-color); 
     border-radius: 10px;
@@ -142,7 +139,7 @@ h3 {
     animation: slideAndZoom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
     opacity: 0; 
 
-    /* Animations de survol pour un rendu pro */
+    /* Animations de survol */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -151,7 +148,7 @@ h3 {
     box-shadow: 0 18px 30px rgba(0, 0, 0, 0.5); 
 }
 
-/* Styles des listes de compétences (Aussi en glassmorphism léger pour la cohérence) */
+/* Styles des listes de compétences */
 ul {
     list-style: none;
     padding: 0;
@@ -215,7 +212,7 @@ ul li:hover {
     transform: translateY(-2px);
 }
 
-/* Styles pour la modale */
+/* Styles pour la modale (pop-up image) */
 .modal {
     display: none; 
     position: fixed;

@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='5') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='6') }}">
 </head>
 <body>
     <div class="cv-container">
@@ -20,7 +20,7 @@
 
                 <img src="{{ url_for('static', filename='img/moi.jpg') }}" alt="Ma photo" class="profile-img" id="myImg">
 
-                <div class="section contact-info" style="animation-delay: 1.0s;">
+                <div class="section contact-info" style="animation-delay: 0.8s;">
                     <h2>Détails de Contact</h2>
                     <p><strong>Nom :</strong> FATON</p>
                     <p><strong>Prénoms :</strong> Kpèhundo Don de Dieu shammah</p>
@@ -32,7 +32,7 @@
                     <p><strong>Adresse :</strong> Azowlisse</p>
                 </div>
                 
-                <div class="section" style="animation-delay: 1.6s;">
+                <div class="section" style="animation-delay: 1.4s;">
                     <h2>Compétences Techniques</h2>
                     <ul>
                     {% for comp in competences %}
@@ -41,13 +41,13 @@
                     </ul>
                 </div>
                 
-                <div class="section" style="animation-delay: 2.2s;">
+                <div class="section" style="animation-delay: 2.0s;">
                     <h2>Compétences Linguistiques</h2>
                     <p><strong>Langue parlée et écrite :</strong> Français</p>
                     <p><strong>Langues parlées :</strong> Wémè, Fon</p>
                 </div>
 
-                <div class="section" style="animation-delay: 2.8s;">
+                <div class="section" style="animation-delay: 2.6s;">
                     <p class="final-statement">Je certifie exactes les informations ci-dessus mentionnées.</p>
                 </div>
                 
@@ -55,7 +55,7 @@
             
             <div class="main-details">
                 
-                <div class="section" style="animation-delay: 1.3s;">
+                <div class="section" style="animation-delay: 1.1s;">
                     <h2>ÉTUDES UNIVERSITAIRES</h2>
                     {% for exp in experiences %}
                     <div>
@@ -66,7 +66,7 @@
                     {% endfor %}
                 </div>
 
-                <div class="section" style="animation-delay: 1.9s;">
+                <div class="section" style="animation-delay: 1.7s;">
                     <h2>STAGES ET FORMATIONS PROFESSIONNELLES</h2>
                     {% for stage in stages %}
                     <div>
@@ -79,7 +79,7 @@
                     {% endfor %}
                 </div>
                 
-                <div class="section" style="animation-delay: 2.5s;">
+                <div class="section" style="animation-delay: 2.3s;">
                     <h2>ÉTUDES PRIMAIRES ET SECONDAIRES</h2>
                     {% for edu in educations %}
                     <div>
@@ -92,7 +92,7 @@
                     {% endfor %}
                 </div>
 
-                <div class="section contact-form" style="animation-delay: 3.1s;">
+                <div class="section contact-form" style="animation-delay: 2.9s;">
                     <h2>CONTACTEZ-MOI</h2>
                     <p>Pour me contacter directement, veuillez utiliser le formulaire sécurisé ci-dessous. Je vous répondrai dans les plus brefs délais.</p>
                     <a href="https://form.jotform.com/252686254072056" target="_blank" class="jotform-button">
