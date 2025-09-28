@@ -1,78 +1,39 @@
-from flask import Flask, render_template, url_for
-from flask_sqlalchemy import SQLAlchemy
-import os
-from sqlalchemy import asc, desc # Importe les fonctions de tri
+from flask import Flask, render_template
 
-# L'importation de 'create_database' est supprimée ici pour éviter la boucle.
+# CRUCIAL : assurez-vous que static_folder est bien 'static'
+app = Flask(__name__) 
 
-# Configuration de l'application Flask
-app = Flask(__name__)
-# Connexion à la base de données (SQLite fonctionne très bien sur Render avec cette stratégie)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cv_data.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+# --- Vos données (assurez-vous que ces listes sont bien définies) ---
+# Si vous avez une base de données, adaptez cette partie.
+# Ces listes doivent être définies quelque part avant d'être passées au template.
 
-# L'appel à create_database() est DÉSORMAIS supprimé ici.
+experiences = [
+    # Exemple de données (remplacez par les vôtres)
+    {'poste': 'Étudiant en Licence 1', 'entreprise': 'Ecole Polytechnique d\'Abomey-Calavi (EPAC)', 'periode': '2023 - Aujourd\'hui', 'description': "Formation d'Ingénieur en Génie Electrique et Informatique Industrielle (GEII)."},
+]
+educations = [
+    {'etablissement': 'Lycée Technique d\'Azowlisse', 'niveau': 'Secondaire', 'periode': '2019-2023', 'diplome': 'Baccalauréat Série C'},
+]
+stages = [
+    {'cadre': 'Stage d\'initiation', 'centre': 'Entreprise locale de maintenance', 'annee': '2024'},
+]
+competences = [
+    {'nom': 'Python', 'niveau': 'Débutant/Intermédiaire'},
+    {'nom': 'HTML & CSS', 'niveau': 'Intermédiaire'},
+]
+# -------------------------------------------------------------------
 
-# ----------------------------------------------------
-# DÉFINITION DES MODÈLES (CLASSES)
-# ----------------------------------------------------
-
-class Experience(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    poste = db.Column(db.String(120), nullable=False)
-    entreprise = db.Column(db.String(120), nullable=False)
-    periode = db.Column(db.String(80), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-
-class Competence(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String(80), nullable=False)
-    niveau = db.Column(db.String(80), nullable=False)
-
-class Education(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    periode = db.Column(db.String(80), nullable=False)
-    etablissement = db.Column(db.String(120), nullable=False)
-    niveau = db.Column(db.String(80), nullable=False)
-    diplome = db.Column(db.String(80), nullable=True) 
-
-class Stage(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    annee = db.Column(db.String(80), nullable=False)
-    centre = db.Column(db.String(120), nullable=False)
-    cadre = db.Column(db.String(120), nullable=False)
-    diplome = db.Column(db.String(120), nullable=True)
-
-# ----------------------------------------------------
-# ROUTE PRINCIPALE
-# ----------------------------------------------------
 
 @app.route('/')
-def home():
-    # TRI CHRONOLOGIQUE pour les études universitaires (Licence -> M1 -> M2)
-    experiences = Experience.query.order_by(asc(Experience.periode)).all()
-    
-    # TRI CHRONOLOGIQUE pour les études primaires/secondaires (CI -> Terminale)
-    educations = Education.query.order_by(asc(Education.periode)).all()
-
-    # TRI ANTÉCHRONOLOGIQUE pour les stages (le plus récent en premier)
-    stages = Stage.query.order_by(desc(Stage.annee)).all()
-    
-    # Compétences (sans tri)
-    competences = Competence.query.all()
-    
+def index():
     return render_template(
-        'index.html', 
-        experiences=experiences, 
-        competences=competences, 
+        'index.html',
+        experiences=experiences,
         educations=educations,
-        stages=stages
+        stages=stages,
+        competences=competences
     )
 
-# ----------------------------------------------------
-# DÉMARRAGE DU SERVEUR
-# ----------------------------------------------------
-
 if __name__ == '__main__':
+    # Lancez l'application en mode debug
     app.run(debug=True)
